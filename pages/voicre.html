@@ -43,6 +43,47 @@
        </div>
       </article>
     </main>
+    <div class="button-container">
+      <button onclick="turnRelayOn('http://172.20.10.10/1/off')">ON</button>
+      <button onclick="turnRelayOff('http://172.20.10.10/1/on')">OFF</button>
+  </div>
+  
+  <script>
+      function turnRelayOn(url) {
+          // Send a request to the ESP32 server to turn the relay ON
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function () {
+              if (this.readyState == 4 && this.status == 200) {
+                  // Optionally, you can handle the response from the server here
+                  console.log("Relay turned ON");
+                  // Call the myAPI function after the relay is turned ON
+                  myAPI();
+              }
+          };
+          xhttp.open("GET", url, true);
+          xhttp.send();
+      }
+  
+      function turnRelayOff(url) {
+          // Send a request to the ESP32 server to turn the relay OFF
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function () {
+              if (this.readyState == 4 && this.status == 200) {
+                  // Optionally, you can handle the response from the server here
+                  console.log("Relay turned OFF");
+                  // Call the myAPI function after the relay is turned OFF
+                  myAPI();
+              }
+          };
+          xhttp.open("GET", url, true);
+          xhttp.send();
+      }
+  
+      function myAPI() {
+          // Assuming this function is used to fetch the status after relay action
+          // You can implement it as required
+      }
+  </script>
 
     <footer class="w3-container w3-dark-grey" style="padding:32px">
       <a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
